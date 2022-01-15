@@ -25,7 +25,7 @@ SECRET_KEY = 'ildw+&d85_(7zoyk(*76$41ci7y4*1)c^-^$5fzadtitbk^y_3'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["localhost","127.0.0.1","0.0.0.0","192.168.0.107"]
+ALLOWED_HOSTS = ["localhost","127.0.0.1","0.0.0.0","192.168.0.107","intense-meadow-62012.herokuapp.com/"]
 
 
 # Application definition
