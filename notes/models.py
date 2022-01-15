@@ -27,11 +27,12 @@ class UserModel(models.Model):
     class Meta:
         verbose_name = "NotesModel"
         verbose_name_plural = "NotesModels"
+        db_table = "RegisteredUsers"
     
     def save(self, *args, **kwargs):
         self.password = hashlib.sha3_256(self.password.encode('utf-8')).hexdigest()
         self.username = hashlib.sha3_256(self.username.encode('utf-8')).hexdigest()
-        super(UserModel,self).save(*args, **kwargs)
+        super().save(*args, **kwargs)
 
     def __str__(self):
         return self.fullname
