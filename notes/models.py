@@ -31,7 +31,7 @@ class UserModel(models.Model):
     def save(self, *args, **kwargs):
         self.password = hashlib.sha3_256(self.password.encode('utf-8')).hexdigest()
         self.username = hashlib.sha3_256(self.username.encode('utf-8')).hexdigest()
-        super().save(*args, **kwargs)
+        super(UserModel,self).save(*args, **kwargs)
 
     def __str__(self):
         return self.fullname
