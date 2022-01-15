@@ -70,12 +70,13 @@ def login(request):
     print(data)
     data['username'] = hashlib.sha3_256(
         data['username'].encode('utf-8')).hexdigest()
-    data['password'] = hashlib.sha3_256(
-        data['password'].encode('utf-8')).hexdigest()
+    data['password'] = hashlib.sha3_256(data['password'].encode('utf-8')).hexdigest()
     obj = UserModel.objects.get(
         username=data['username'], password=data['password'])
     print("Object:", obj)
     if obj.isActive:
         if obj is not None:
+            if not request.session.exists(request.session.session_key):
+                request.session.create() 
             return HttpResponse("Data:"+str(data)+"<br>User is valid"+"<br>"+request.session.session_key)
     return HttpResponse("Data:"+str(data)+"<br>")
