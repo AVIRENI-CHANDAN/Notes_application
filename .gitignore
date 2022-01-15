@@ -3,3 +3,6 @@
 /env
 **.ipynb
 **/migrations
+/*.sqlite3
+/*.db
+**/.vscode
