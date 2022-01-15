@@ -10,7 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/2.2/ref/settings/
 """
 
-import os
+import os, socket
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -77,10 +77,10 @@ WSGI_APPLICATION = 'Notes_application.wsgi.application'
 DATABASES = {
     'default': {
        'ENGINE': 'django.db.backends.postgresql',
-       'NAME': 'notesapplication',
-       'USER': 'root',
-       'PASSWORD': '$Avireni1287',
-       'HOST': 'localhost',
+       'NAME': 'd5mr2cqnclpprv',
+       'USER': 'bkaesjgpaicmuy',
+       'PASSWORD': 'a0748e8cad2bf91895a18611b433bdaae10b4c644995155f9a0cb2f2d2e06c51',
+       'HOST': 'ec2-54-227-246-76.compute-1.amazonaws.com',
        'PORT': '5432',
    },
     'sqlite3': {
