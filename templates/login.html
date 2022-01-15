@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, max-scale=2.0, min-scale=0.5, user-scalable=no">
+    <title>Login | {{os}}</title>
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
+    <script>
+        function onSignIn(googleUser) {
+            var profile = googleUser.getBasicProfile();
+            console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
+            console.log('Name: ' + profile.getName());
+            console.log('Image URL: ' + profile.getImageUrl());
+            console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
+        }
+    </script>
+    <meta name="google-signin-client_id"
+        content="537199089549-j22qr914biu0d13ut9ktgdqu4vot9t6h.apps.googleusercontent.com">
+    <style>
+        html {
+            border: 0;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+        }
+
+        .container {
+            display: flex;
+            min-height: 100vh;
+            align-items: center;
+        }
+
+        .formContainer {
+            vertical-align: bottom;
+            width: 50%;
+            height: max-content;
+        }
+
+        input {
+            border: 0;
+            border-bottom: 2px solid rgba(128, 128, 128, 0.5);
+            text-align: center;
+            background-color: rgba(100, 100, 100, 0.085);
+            box-sizing: border-box;
+            border-radius: 25px;
+        }
+
+        input::selection {
+            border-color: transparent;
+        }
+
+        input:focus {
+            outline: 0;
+            -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075), 0 0 8px rgba(0, 0, 0, 0.6);
+            box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075), 0 0 8px rgba(0, 0, 0, 0.6);
+        }
+
+        input:hover {
+            height: 25px;
+            -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+            box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+        }
+
+        .loginForm label,
+        .registrationForm label,
+        .loginForm input,
+        .registrationForm input {
+            width: 24vw;
+            /* border: 1px solid green; */
+            text-align: center;
+        }
+
+        form div div label {
+            display: inline-flex;
+        }
+
+        .verticalBreak {
+            content: '';
+            position: relative;
+            height: 80vh;
+            background-color: gray;
+            width: 1px;
+            border-radius: 15px;
+            box-shadow: 0 0 2px black, 0 0 5px gray;
+        }
+
+        .fieldWrapper {
+            height: 25px;
+            padding: 10px 0;
+        }
+
+        .buttonsWrapper {
+            display: flex;
+        }
+
+        .buttonContainer {
+            align-content: center;
+            width: 80%;
+            margin-left: 10%;
+            margin-right: 10%;
+        }
+
+        .buttonContainer button:hover {
+            background-color: greenyellow;
+            transition: background-color 0.5s linear 0.25s;
+        }
+
+        .buttonsWrapper div button {
+            box-sizing: border-box;
+            border-radius: 12px;
+            border: transparent;
+            height: 30px;
+            width: 100%;
+            cursor: pointer;
+        }
+
+        .thirdParty {
+            margin-top: 25px;
+            position: relative;
+        }
+
+        .partyButtonsWrapper {
+            position: relative;
+            height: auto;
+            margin: 0 auto;
+            width: 80%;
+        }
+
+        .g-signin2 {
+            box-shadow: 0 0 2px black;
+            width: fit-content;
+            content: '';
+            position: relative;
+        }
+
+        @media screen and (max-width:900px) {
+            .container {
+                display: block;
+                /* border: 1px solid red; */
+            }
+
+            .verticalBreak {
+                display: none;
+            }
+
+            .formContainer {
+                /* border: 1px solid green; */
+                padding: 25px 0;
+                width: 100%;
+                min-height: 40vh;
+                overflow-y: scroll;
+            }
+
+            .loginForm,
+            .registrationForm {
+                display: flex;
+                /* border: 1px solid blue; */
+            }
+
+            .formWrapper {
+                align-content: center;
+                vertical-align: middle;
+                width: 100vw;
+            }
+
+            .loginForm label,
+            .registrationForm label,
+            .loginForm input,
+            .registrationForm input {
+                width: 48vw;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <div class="loginFormContainer formContainer">
+
+            <form action="user/login" method="post" class="loginForm">
+                {% csrf_token %}
+
+                <div class="formWrapper">
+
+                    <div class="usernameWrapper fieldWrapper">
+                        {{ login_form.username.label_tag}}
+                        {{ login_form.username }}
+                    </div>
+
+                    <div class="passwordWrapper fieldWrapper">
+                        {{ login_form.password.label_tag}}
+                        {{ login_form.password }}
+                    </div>
+
+                    <div class="rememberMe fieldWrapper">
+                        {{ login_form.remember_me.label_tag }}
+                        {{ login_form.remember_me }}
+                    </div>
+
+                    <div class="buttonsWrapper">
+                        <div class="buttonContainer">
+                            <button type="submit" class="signup">Sign In</button>
+                        </div>
+                    </div>
+
+                </div>
+
+            </form>
+
+            <div class="thirdParty">
+                <div class="partyButtonsWrapper">
+                    <div class="googleSignIn">
+                        <div class="g-signin2" data-onsuccess="onSignIn"></div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <span class="verticalBreak"></span>
+        <div class="signUpContainer formContainer">
+
+            <form action="user/register" method="post" class="registrationForm">
+                {% csrf_token %}
+
+                <div class="formWrapper">
+
+                    <div class="fullnameWrapper fieldWrapper">
+                        <!-- <label for="fullname">
+                            <p>Full Name</p>
+                        </label>
+                        <input type="text" name="fullname" id="fullname" class="fullname"
+                            placeholder="Enter your full name" /> -->
+                        {{ registration_form.fullname.label_tag}}
+                        {{ registration_form.fullname }}
+                    </div>
+
+
+                    <div class="usernameWrapper fieldWrapper">
+                        <!-- <label for="username">
+                            <p>Username</p>
+                        </label>
+                        <input type="text" name="username" id="username" class="username"
+                            placeholder="Enter your username"> -->
+                        {{ registration_form.username.label_tag}}
+                        {{ registration_form.username }}
+                    </div>
+
+                    <div class="passwordWrapper fieldWrapper">
+                        <!-- <label for="password">
+                            <p>Password</p>
+                        </label>
+                        <input type="password" name="password" id="password" class="password"
+                            placeholder="Enter the password"> -->
+                        {{ registration_form.password.label_tag}}
+                        {{ registration_form.password }}
+                    </div>
+
+                    <div class="conformationPasswordWrapper fieldWrapper">
+                        <!-- <label for="repassword">
+                            <p>Re-type Password</p>
+                        </label>
+                        <input type="password" name="repassword" id="re_password" class="re_password"
+                            placeholder="Enter the password"> -->
+                        {{ registration_form.re_password.label_tag}}
+                        {{ registration_form.re_password }}
+                    </div>
+
+                    <div class="emailWrapper fieldWrapper">
+                        <!-- <label for="email">
+                            <p>Email</p>
+                        </label>
+                        <input type="email" name="email" id="email" class="email" placeholder="Enter your mail address"> -->
+                        {{ registration_form.email.label_tag}}
+                        {{ registration_form.email }}
+                    </div>
+
+                    <div class="buttonsWrapper">
+                        <div class="buttonContainer">
+                            <button type="submit" class="register">Register</button>
+                        </div>
+                    </div>
+
+                </div>
+
+            </form>
+
+            <div class="thirdParty">
+                <div class="partyButtonsWrapper">
+                    <div class="googleSignIn">
+                        <div class="g-signin2" data-onsuccess="onSignIn"></div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</body>
+
+</html>

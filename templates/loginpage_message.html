@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Message</title>
+    <style>
+        html {
+            border: 0;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            margin: 0;
+            position: relative;
+            height: 100vh;
+            width: 100vw;
+            overflow: hidden;
+            background-color: rgba(0, 0, 0, 0.85);
+        }
+
+        .messageContainer {
+            margin-top: 10vh;
+            text-align: center;
+            color: whitesmoke;
+            font-size: 5vh;
+        }
+
+        .messageContent {
+            margin: 0 auto;
+            padding: 25px;
+            width: max-content;
+            box-shadow: inset 0 0 2px {{messageColor}}, 0 0 5px {{messageColor}}, inset 0 0 2px {{messageColor}}, inset 0 0 5px {{messageColor}};
+        }
+
+        .subMessageContent{
+            font-size:medium;
+        }
+
+        .notice {
+            color: whitesmoke;
+            text-align: center;
+            position: absolute;
+            left: 0;
+            top: calc(80vh - 10px);
+            width: 100vw;
+        }
+    </style>
+    <script>
+        window.setTimeout(function () {
+            window.location.href = '/';
+        }, 3000);
+    </script>
+</head>
+
+<body>
+    <div class="messageContainer">
+        <div class="messageWrapper">
+            <div class="messageContent">
+                <h3>
+                    {{message}}
+                </h3>
+                <h5 class="subMessageContent">
+                    {{sub_message}}
+                </h5>
+            </div>
+        </div>
+    </div>
+    <div class="notice">
+        Page will be redirected automatically.
+    </div>
+</body>
+
+</html>
